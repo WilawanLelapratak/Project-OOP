@@ -11,9 +11,16 @@ public class WorldRenderer {
 	private Texture pacmanImg;
 	
 	private Pacman pacman;
+
+	World world;
 	
     public WorldRenderer(MyGdxGame myGdxGame, World world) {
         this.myGdxGame = myGdxGame;
+        
+        this.pacman = world.getPacman();
+        
+        SpriteBatch batch;
+        
         batch = myGdxGame.batch;
  
         this.world = world;

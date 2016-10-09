@@ -16,15 +16,16 @@ public class GameScreen extends ScreenAdapter {
 	
 	private Pacman pacman;
 	
-	private World world;
+	World world;
 	
 	private WorldRenderer worldRenderer;
 	
     public GameScreen(MyGdxGame myGdxGame) {
         this.myGdxGame = myGdxGame;
         pacmanImg = new Texture("pacman.png");
-        pacman = new Pacman(100, 100);
-        
+        //pacman = new Pacman(100, 100);
+        world = new World(myGdxGame);
+        worldRenderer = new WorldRenderer(myGdxGame, world);
     }
     
     @Override
