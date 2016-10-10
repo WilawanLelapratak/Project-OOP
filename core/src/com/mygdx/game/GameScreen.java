@@ -14,7 +14,7 @@ public class GameScreen extends ScreenAdapter {
 	
 	private Texture pacmanImg;
 	
-	private Pacman pacman;
+	//private Pacman pacman;
 	
 	World world;
 	
@@ -30,7 +30,7 @@ public class GameScreen extends ScreenAdapter {
     
     @Override
     public void render(float delta) {
-    	update(delta);
+    	world.update(delta);
     	Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         worldRenderer.render(delta);
@@ -42,18 +42,18 @@ public class GameScreen extends ScreenAdapter {
         
     }
     
-    private void update(float delta) {
+    /*private void update(float delta) {
     	if(Gdx.input.isKeyPressed(Keys.UP)) {
-            pacman.move(Pacman.DIRECTION_UP);
+           World.pacman.move(Pacman.DIRECTION_UP);
         }
         if(Gdx.input.isKeyPressed(Keys.DOWN)) {
-            pacman.move(Pacman.DIRECTION_DOWN);
+            World.pacman.move(Pacman.DIRECTION_DOWN);
         }
         if(Gdx.input.isKeyPressed(Keys.LEFT)) {
-        	pacman.move(Pacman.DIRECTION_LEFT);
+        	World.pacman.move(Pacman.DIRECTION_LEFT);
         }
         if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
-        	pacman.move(Pacman.DIRECTION_RIGHT);
+        	World.pacman.move(Pacman.DIRECTION_RIGHT);
         }
-    }
+    }*/
 }

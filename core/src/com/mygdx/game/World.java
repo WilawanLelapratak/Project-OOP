@@ -5,7 +5,7 @@ import com.badlogic.gdx.Input.Keys;
 
 public class World {
 	
-	private Pacman pacman;
+	static Pacman pacman;
 	
 	private MyGdxGame myGdxGame;
 	
@@ -18,7 +18,7 @@ public class World {
 		return pacman;
 	}
 
-	private void update(float delta) {
+	void update(float delta) {
     	if(Gdx.input.isKeyPressed(Keys.UP)) {
             pacman.move(Pacman.DIRECTION_UP);
         }
