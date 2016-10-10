@@ -10,12 +10,18 @@ public class WorldRenderer {
 	
 	private Texture pacmanImg;
 	
+	private MazeRenderer mazeRenderer;
+	
 	private Pacman pacman;
+	
+	public static final int BLOCK_SIZE = 40;
 
 	World world;
 	
     public WorldRenderer(MyGdxGame myGdxGame, World world) {
         this.myGdxGame = myGdxGame;
+        
+        mazeRenderer = new MazeRenderer(myGdxGame.batch, world.getMaze());
         
         this.pacman = world.getPacman();
         
@@ -29,10 +35,11 @@ public class WorldRenderer {
     }
 	
 	public void render(float delta) {
+		mazeRenderer.render();
 		SpriteBatch batch = myGdxGame.batch;
+		Vector2 pos = world.getPacman().getPosition();
 		batch.begin();
-		Vector2 pos = pacman.getPosition();
-		batch.draw(pacmanImg, pos.x, pos.y);
+		batch.draw(pacmanImg, pos.x - BLOCK_SIZE/2, MyGdxGame.HEIGHT -pos.y - BLOCK_SIZE/2);
 		batch.end();
 	}
 

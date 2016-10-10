@@ -9,28 +9,37 @@ public class World {
 	
 	private MyGdxGame myGdxGame;
 	
+	private Maze maze;
+	
 	World(MyGdxGame myGdxGame) {
 		this.myGdxGame = myGdxGame;
 		
-		pacman = new Pacman(100, 100);
+		pacman = new Pacman(60,60);
+		
+		maze = new Maze();
 	}
 	Pacman getPacman() {
 		return pacman;
 	}
+	
+	Maze getMaze() {
+		return maze;
+	}
 
 	void update(float delta) {
     	if(Gdx.input.isKeyPressed(Keys.UP)) {
-            pacman.move(Pacman.DIRECTION_UP);
+            pacman.setNextDirection(Pacman.DIRECTION_UP);
         }
         if(Gdx.input.isKeyPressed(Keys.DOWN)) {
-            pacman.move(Pacman.DIRECTION_DOWN);
+            pacman.setNextDirection(Pacman.DIRECTION_DOWN);
         }
         if(Gdx.input.isKeyPressed(Keys.LEFT)) {
-        	pacman.move(Pacman.DIRECTION_LEFT);
+        	pacman.setNextDirection(Pacman.DIRECTION_LEFT);
         }
         if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
-        	pacman.move(Pacman.DIRECTION_RIGHT);
+        	pacman.setNextDirection(Pacman.DIRECTION_RIGHT);
         }
+		pacman.update();
     }
 
 }
