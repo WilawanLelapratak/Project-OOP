@@ -72,7 +72,11 @@ public class Pacman {
         }
         
 		if(isAtCenter()) {
-            currentDirection = nextDirection;
+            if(canMoveInDirection(nextDirection)) {
+                currentDirection = nextDirection;    
+            } else {
+                currentDirection = DIRECTION_STILL;    
+            }
         }
         position.x += SPEED * DIR_OFFSETS[currentDirection][0];
         position.y += SPEED * DIR_OFFSETS[currentDirection][1];
@@ -82,6 +86,21 @@ public class Pacman {
         int blockSize = WorldRenderer.BLOCK_SIZE;
  
         return ((((int)position.x - blockSize/2) % blockSize) == 0) && ((((int)position.y - blockSize/2) % blockSize) == 0);
+    }
+	
+	private boolean canMoveInDirection(int dir) {
+		int newRow = DIR_OFFSETS[dir][1];
+		int newCol = DIR_OFFSETS[dir][0];
+		
+        return true;   // ยอมหมดไปก่อน เดี๋ยวเราจะทยอยเขียน
+    }
+	
+	private int getRow() {
+        return ((int)position.y) / WorldRenderer.BLOCK_SIZE; 
+    }
+ 
+    private int getColumn() {
+        return ((int)position.x) / WorldRenderer.BLOCK_SIZE; 
     }
 }
 
