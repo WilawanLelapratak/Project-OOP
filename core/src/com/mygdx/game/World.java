@@ -27,7 +27,7 @@ public class World {
 	}
 
 	void update(float delta) {
-    	if(Gdx.input.isKeyPressed(Keys.UP)) {
+    	/*if(Gdx.input.isKeyPressed(Keys.UP)) {
             pacman.setNextDirection(Pacman.DIRECTION_UP);
         }
         if(Gdx.input.isKeyPressed(Keys.DOWN)) {
@@ -38,7 +38,7 @@ public class World {
         }
         if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
         	pacman.setNextDirection(Pacman.DIRECTION_RIGHT);
-        }
+        }*/
 		pacman.update();
     }
 

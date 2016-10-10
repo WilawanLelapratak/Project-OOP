@@ -72,9 +72,14 @@ public class Pacman {
         }
         
 		if(isAtCenter()) {
+			
             if(canMoveInDirection(nextDirection)) {
-                currentDirection = nextDirection;    
-            } else {
+            	if(Maze.hasDotAt(getRow(),getColumn())) {
+                	Maze.removeDotAt(getRow(),getColumn());
+            	}
+                currentDirection = nextDirection;
+                
+            }else {
                 currentDirection = DIRECTION_STILL;    
             }
         }
@@ -89,8 +94,11 @@ public class Pacman {
     }
 	
 	private boolean canMoveInDirection(int dir) {
-		int newRow = DIR_OFFSETS[dir][1];
-		int newCol = DIR_OFFSETS[dir][0];
+		int newRow = getRow() + DIR_OFFSETS[dir][1];
+		int newCol = getColumn() + DIR_OFFSETS[dir][0];
+		if(Maze.hasWallAt(newRow,newCol)){
+			return false;
+		}
 		
         return true;   // ยอมหมดไปก่อน เดี๋ยวเราจะทยอยเขียน
     }
