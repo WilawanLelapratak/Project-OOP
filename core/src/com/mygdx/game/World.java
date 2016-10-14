@@ -21,6 +21,8 @@ public class World {
 		maze = new Maze();
 		
 		score = 0;
+		
+		registerDotEattenListener();
 	}
 	Pacman getPacman() {
 		return pacman;
@@ -31,18 +33,6 @@ public class World {
 	}
 
 	void update(float delta) {
-    	/*if(Gdx.input.isKeyPressed(Keys.UP)) {
-            pacman.setNextDirection(Pacman.DIRECTION_UP);
-        }
-        if(Gdx.input.isKeyPressed(Keys.DOWN)) {
-            pacman.setNextDirection(Pacman.DIRECTION_DOWN);
-        }
-        if(Gdx.input.isKeyPressed(Keys.LEFT)) {
-        	pacman.setNextDirection(Pacman.DIRECTION_LEFT);
-        }
-        if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
-        	pacman.setNextDirection(Pacman.DIRECTION_RIGHT);
-        }*/
 		pacman.update();
     }
 	
@@ -53,5 +43,14 @@ public class World {
 	public void increaseScore() {
 		score += 1;
 	}
+	
+	private void registerDotEattenListener() {
+        pacman.registerDotEattenListener(new Pacman.DotEattenListener() {
+            @Override
+            public void notifyDotEatten() {
+                score += 1;
+            }
+        });
+    }
 
 }

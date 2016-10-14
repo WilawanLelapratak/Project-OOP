@@ -1,5 +1,8 @@
 package com.mygdx.game;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
@@ -18,11 +21,14 @@ public class Pacman {
 	
 	private Vector2 position;
 	
+	private List<DotEattenListener> listeners;
+	
 	public Pacman(int x, int y, World world) {
 		position = new Vector2(x,y);
 		currentDirection = DIRECTION_STILL;
         nextDirection = DIRECTION_STILL;
         this.world = world;
+        listeners = new LinkedList<DotEattenListener>();
 	}
 	
 	public Vector2 getPosition() {
@@ -79,7 +85,8 @@ public class Pacman {
             if(canMoveInDirection(nextDirection)) {
             	if(Maze.hasDotAt(getRow(),getColumn())) {
                 	Maze.removeDotAt(getRow(),getColumn());
-                	world.increaseScore();
+                	//world.increaseScore();
+                	notifyDotEattenListeners();
             	}
                 currentDirection = nextDirection;
                 
@@ -105,7 +112,7 @@ public class Pacman {
 			return false;
 		}
 		
-        return true;   // ยอมหมดไปก่อน เดี๋ยวเราจะทยอยเขียน
+        return true;
     }
 	
 	private int getRow() {
@@ -114,6 +121,20 @@ public class Pacman {
  
     private int getColumn() {
         return ((int)position.x) / WorldRenderer.BLOCK_SIZE; 
+    }
+    
+    public interface DotEattenListener {
+    	void notifyDotEatten();
+    }
+    
+    public void registerDotEattenListener(DotEattenListener l) {
+        listeners.add(l);
+    }
+ 
+    private void notifyDotEattenListeners() {
+        for(DotEattenListener l : listeners) {
+            l.notifyDotEatten();
+        }
     }
 }
 

@@ -27,7 +27,9 @@ public class MazeRenderer {
     	batch.begin();
         for(int r = 0; r < maze.getHeight(); r++) {
             for(int c = 0; c < maze.getWidth(); c++) {
-                int x = c * WorldRenderer.BLOCK_SIZE;
+                
+            	int x = c * WorldRenderer.BLOCK_SIZE;
+                
                 int y = MyGdxGame.HEIGHT - (r * WorldRenderer.BLOCK_SIZE) - WorldRenderer.BLOCK_SIZE;
  
                 if(maze.hasWallAt(r, c)) {

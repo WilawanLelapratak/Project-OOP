@@ -40,11 +40,17 @@ public class WorldRenderer {
 	
 	public void render(float delta) {
 		mazeRenderer.render();
+		
 		SpriteBatch batch = myGdxGame.batch;
+		
 		Vector2 pos = world.getPacman().getPosition();
+		
 		batch.begin();
+		
 		batch.draw(pacmanImg, pos.x - BLOCK_SIZE/2, MyGdxGame.HEIGHT -pos.y - BLOCK_SIZE/2);
+		
 		font.draw(batch,  "" + world.getScore(), 700, 60);
+		
 		batch.end();
 	}
 

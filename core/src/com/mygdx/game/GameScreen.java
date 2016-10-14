@@ -22,22 +22,30 @@ public class GameScreen extends ScreenAdapter {
 	
     public GameScreen(MyGdxGame myGdxGame) {
         this.myGdxGame = myGdxGame;
+        
         pacmanImg = new Texture("pacman.png");
+        
         pacman = new Pacman(100, 100,world);
+        
         world = new World(myGdxGame);
+        
         worldRenderer = new WorldRenderer(myGdxGame, world);
     }
     
     @Override
     public void render(float delta) {
     	world.update(delta);
+    	
     	Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        worldRenderer.render(delta);
+        
+    	Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        
+    	worldRenderer.render(delta);
     }
     
     public void update(float delta) {
     	updatePacmanDirection();
+    	
     	world.update(delta);
     }
     

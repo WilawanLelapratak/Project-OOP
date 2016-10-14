@@ -24,7 +24,9 @@ public class Maze {
 	
     public Maze() {
         height = MAP.length;
+        
         width = MAP[0].length();
+        
         initDotData();
     }
     
@@ -46,6 +48,7 @@ public class Maze {
     
     private void initDotData() {
         hasDots = new boolean[height][width];
+        
         for(int r = 0; r < height; r++) {
             for(int c = 0; c < width; c++) {
                 hasDots[r][c] = MAP[r].charAt(c) == '.';
