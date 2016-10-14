@@ -14,13 +14,15 @@ public class Pacman {
     public static final int SPEED = 5;
     private int currentDirection;
     private int nextDirection;
+    private World world;
 	
 	private Vector2 position;
 	
-	public Pacman(int x, int y) {
+	public Pacman(int x, int y, World world) {
 		position = new Vector2(x,y);
 		currentDirection = DIRECTION_STILL;
         nextDirection = DIRECTION_STILL;
+        this.world = world;
 	}
 	
 	public Vector2 getPosition() {
@@ -57,6 +59,7 @@ public class Pacman {
     }
 	
 	public void update() {
+		Maze maze = world.getMaze();
 		this.setNextDirection(Pacman.DIRECTION_STILL);
 		if(Gdx.input.isKeyPressed(Keys.UP)) {
 			this.setNextDirection(Pacman.DIRECTION_UP);
@@ -76,8 +79,10 @@ public class Pacman {
             if(canMoveInDirection(nextDirection)) {
             	if(Maze.hasDotAt(getRow(),getColumn())) {
                 	Maze.removeDotAt(getRow(),getColumn());
+                	world.increaseScore();
             	}
                 currentDirection = nextDirection;
+                //world.increaseScore();
                 
             }else {
                 currentDirection = DIRECTION_STILL;    
@@ -94,6 +99,7 @@ public class Pacman {
     }
 	
 	private boolean canMoveInDirection(int dir) {
+		Maze maze = world.getMaze();
 		int newRow = getRow() + DIR_OFFSETS[dir][1];
 		int newCol = getColumn() + DIR_OFFSETS[dir][0];
 		if(Maze.hasWallAt(newRow,newCol)){

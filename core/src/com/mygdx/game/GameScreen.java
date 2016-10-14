@@ -23,7 +23,7 @@ public class GameScreen extends ScreenAdapter {
     public GameScreen(MyGdxGame myGdxGame) {
         this.myGdxGame = myGdxGame;
         pacmanImg = new Texture("pacman.png");
-        pacman = new Pacman(100, 100);
+        pacman = new Pacman(100, 100,world);
         world = new World(myGdxGame);
         worldRenderer = new WorldRenderer(myGdxGame, world);
     }

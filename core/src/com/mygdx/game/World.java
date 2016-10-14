@@ -11,12 +11,16 @@ public class World {
 	
 	private Maze maze;
 	
+	private int score;
+	
 	World(MyGdxGame myGdxGame) {
 		this.myGdxGame = myGdxGame;
 		
-		pacman = new Pacman(60,60);
+		pacman = new Pacman(60,60,this);
 		
 		maze = new Maze();
+		
+		score = 0;
 	}
 	Pacman getPacman() {
 		return pacman;
@@ -41,5 +45,13 @@ public class World {
         }*/
 		pacman.update();
     }
+	
+	public int getScore() {
+		return score;
+	}
+	
+	public void increaseScore() {
+		score += 1;
+	}
 
 }
