@@ -82,7 +82,6 @@ public class Pacman {
                 	world.increaseScore();
             	}
                 currentDirection = nextDirection;
-                //world.increaseScore();
                 
             }else {
                 currentDirection = DIRECTION_STILL;    
